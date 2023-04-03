@@ -13,5 +13,6 @@ COPY . .
 EXPOSE 3000
 # Configurar os comandos para iniciar a aplicação de acordo com as boas práticas
 # verifiquei no package.json os comando pra iniciar o App
-ENTRYPOINT [ "npm", "start" ]
+ENTRYPOINT [ "npm", "run" ]
+CMD [ "start" ]
 # Dica: Leia a seção Docker e Docker-compose no README para mais informações

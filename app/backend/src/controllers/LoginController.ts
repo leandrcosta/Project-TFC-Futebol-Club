@@ -8,7 +8,9 @@ export default class LoginController {
 
   login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
+
     const result = await this._loginService.findByEmail(email);
+
     const passwordInvalid = bcrypt.compareSync(password, result?.password || ''); // se rfor null ou undefined, retorna ''
     if (!passwordInvalid) { // se a senha ou email estiver diferente do db: lançar erro
       return res.status(401).json({ message: 'Invalid email or password' });

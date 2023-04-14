@@ -8,7 +8,6 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
 
     const payload = verifyToken(authorization);
     req.body = payload; // req transita por todas as rotas
-    console.log(payload);
 
     next();
   } catch (error) {

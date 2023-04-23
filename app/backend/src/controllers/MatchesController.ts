@@ -13,6 +13,12 @@ export default class MatchController {
     const matchesProgress = await this.matchService.getProgressMatches(inProgress === 'true');
     return res.status(200).json(matchesProgress);
   };
+
+  getMatchFinish = async (req: Request, res: Response): Promise<Response> => {
+    const { id } = req.params;
+    await this.matchService.isMatchFinish(id);
+    return res.status(200).json({ message: 'Finished' });
+  };
 }
 
 // 1º => verifico se o inProgress é indefinido(não tem na rota)

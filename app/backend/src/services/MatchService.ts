@@ -28,4 +28,11 @@ export default class MatchesSerivice {
     });
     return matches;
   }
+
+  async isMatchFinish(id: string): Promise<void> {
+    await this._matchesModel.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+  }
 }

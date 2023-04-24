@@ -6,7 +6,7 @@ const matchesRouter = Router();
 const matchController = new MatchController();
 
 matchesRouter.get('/', matchController.getAll);
-matchesRouter.patch('/:id', validateToken, matchController.updateGoalsMatch);
+matchesRouter.patch('/:id', validateToken, matchController.updateGoalsMatch); // sem validar token;
 matchesRouter.patch('/:id/finish', validateToken, matchController.getMatchFinish);
 
 export default matchesRouter;

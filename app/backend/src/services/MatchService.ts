@@ -37,13 +37,13 @@ export default class MatchesSerivice {
   }
 
   // Useo o type para /match/ so aceite estes dois valores: { homeTeamGoals e awayTeamGoals}
-  async updateGoalsMatch(id:string, match: MathGoals)
-    : Promise <void> {
-    await this._matchesModel.update(
+  async updateGoalsMatch(id:string, match: MathGoals) {
+    const updateGols = await this._matchesModel.update(
       { homeTeamGoals: match.homeTeamGoals,
         awayTeamGoals: match.awayTeamGoals,
       },
       { where: { id } },
     );
+    return updateGols;
   }
 }

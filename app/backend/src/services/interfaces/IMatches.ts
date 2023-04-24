@@ -11,7 +11,3 @@ export type MathGoals = {
   homeTeamGoals: number,
   awayTeamGoals: number,
 };
-
-/* export interface IMatchesService {
-  getAll(): Promise <IMatch[] | unknown>
-} */

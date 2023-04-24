@@ -23,9 +23,9 @@ export default class MatchController {
 
   updateGoalsMatch = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
-    const { homeTeamGoals, awayTeamGoals } = req.body;
-    await this.matchService.updateGoalsMatch(id, { homeTeamGoals, awayTeamGoals });
-    return res.status(200).json({ message: 'Updated fields' });
+    // const { homeTeamGoals, awayTeamGoals } = req.body;
+    await this.matchService.updateGoalsMatch(id, req.body);
+    return res.status(200).json({ message: 'Fields Updated!' });
   };
 }
 

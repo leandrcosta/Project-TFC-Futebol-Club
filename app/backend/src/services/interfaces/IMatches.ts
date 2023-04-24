@@ -7,7 +7,7 @@ export default interface IMatch {
   inProgress: boolean;
 }
 // https://stackoverflow.com/questions/37233735/interfaces-vs-types-in-typescript
-export type MathGoals = {
-  homeTeamGoals: number,
-  awayTeamGoals: number,
-};
+export interface IMathGoals {
+  homeTeamGoals: number;
+  awayTeamGoals: number;
+}

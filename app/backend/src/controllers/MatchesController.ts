@@ -23,8 +23,11 @@ export default class MatchController {
 
   updateGoalsMatch = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
+    // const { authorization } = req.headers;
     // const { homeTeamGoals, awayTeamGoals } = req.body;
-    await this.matchService.updateGoalsMatch(id, req.body);
+    console.log('RESULTADO==>', req.body);
+    // if (!authorization) return res.status(200).json({ message: 'Deu ruim' });
+    await this.matchService.updateGoalsMatch(+id, req.body);
     return res.status(200).json({ message: 'Fields Updated!' });
   };
 }

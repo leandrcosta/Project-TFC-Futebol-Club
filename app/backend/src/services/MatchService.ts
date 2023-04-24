@@ -1,7 +1,7 @@
 // import IMatches from './interfaces/IMatches';
 import Matches from '../database/models/MatchModel';
 import Team from '../database/models/TeamModel';
-import IMatches, { MathGoals } from './interfaces/IMatches';
+import IMatches, { IMathGoals } from './interfaces/IMatches';
 
 export default class MatchesSerivice {
   private _matchesModel = Matches;
@@ -37,13 +37,19 @@ export default class MatchesSerivice {
   }
 
   // Useo o type para /match/ so aceite estes dois valores: { homeTeamGoals e awayTeamGoals}
-  async updateGoalsMatch(id:string, match: MathGoals) {
-    const updateGols = await this._matchesModel.update(
-      { homeTeamGoals: match.homeTeamGoals,
-        awayTeamGoals: match.awayTeamGoals,
-      },
-      { where: { id } },
-    );
-    return updateGols;
+  async updateGoalsMatch(id:number, match: IMathGoals) {
+    // console.log('log id', id);
+    try {
+      const result = await this._matchesModel.update(
+        { homeTeamGoals: match.homeTeamGoals,
+          awayTeamGoals: match.awayTeamGoals,
+        },
+        { where: { id } },
+      );
+      console.log(result);
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

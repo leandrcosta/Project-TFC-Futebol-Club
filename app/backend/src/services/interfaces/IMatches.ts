@@ -6,6 +6,12 @@ export default interface IMatch {
   awayTeamGoals: number;
   inProgress: boolean;
 }
+// https://stackoverflow.com/questions/37233735/interfaces-vs-types-in-typescript
+export type MathGoals = {
+  homeTeamGoals: number,
+  awayTeamGoals: number,
+};
+
 /* export interface IMatchesService {
   getAll(): Promise <IMatch[] | unknown>
 } */

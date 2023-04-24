@@ -21,7 +21,7 @@ export default class LoginController {
   };
 
   getRole = async (req: Request, res: Response) => {
-    console.log(req.body.data); // retorna { email }
+    // console.log(req.body.data); // retorna { email }
     const result = await this._loginService.findByEmail(req.body.data); // verifico user
     return res.status(200).json({ role: result?.role }); // validei o token na rota, e agora so retorno a { role } do user na rota login/role
   };

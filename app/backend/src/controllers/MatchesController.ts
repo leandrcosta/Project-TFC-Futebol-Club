@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import MatchService from '../services/MatchService';
+// import { MathGoals } from '../services/interfaces/IMatches';
 // Refatorar após aprovado
 export default class MatchController {
   private matchService = new MatchService();
@@ -18,6 +19,13 @@ export default class MatchController {
     const { id } = req.params;
     await this.matchService.isMatchFinish(id);
     return res.status(200).json({ message: 'Finished' });
+  };
+
+  updateGoalsMatch = async (req: Request, res: Response): Promise<Response> => {
+    const { id } = req.params;
+    const { homeTeamGoals, awayTeamGoals } = req.body;
+    await this.matchService.updateGoalsMatch(id, { homeTeamGoals, awayTeamGoals });
+    return res.status(200).json({ message: 'Updated fields' });
   };
 }
 

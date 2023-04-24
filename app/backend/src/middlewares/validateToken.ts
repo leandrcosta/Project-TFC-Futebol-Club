@@ -8,7 +8,7 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
 
     const payload = verifyToken(authorization);
     req.body = payload; // req transita por todas as rotas
-    console.log(payload);
+    // console.log(payload);
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Token must be a valid token' });

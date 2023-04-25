@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
 import MatchService from '../services/MatchService';
-// import { MathGoals } from '../services/interfaces/IMatches';
+import TeamService from '../services/TeamService';
 // Refatorar após aprovado
 export default class MatchController {
   private matchService = new MatchService();
+  private _teamService = new TeamService();
 
   getAll = async (req: Request, res: Response): Promise<Response> => {
     const { inProgress } = req.query;
@@ -25,10 +26,25 @@ export default class MatchController {
     const { id } = req.params;
     // const { authorization } = req.headers;
     // const { homeTeamGoals, awayTeamGoals } = req.body;
-    console.log('RESULTADO==>', req.body);
-    // if (!authorization) return res.status(200).json({ message: 'Deu ruim' });
     await this.matchService.updateGoalsMatch(+id, req.body);
     return res.status(200).json({ message: 'Fields Updated!' });
+  };
+
+  createNewMatch = async (req: Request, res: Response): Promise<Response | undefined> => {
+    try {
+      const newMatch = req.body;
+
+      const teamHome = await this._teamService.findByPk(newMatch.homeTeamId);
+      const teamAway = await this._teamService.findByPk(newMatch.awayTeamId);
+      if (!teamHome || !teamAway) {
+        return res.status(404).json({ message: 'There is no team with such id!' });
+      }
+
+      const createMatch = await this.matchService.createNewMatch(newMatch);
+      return res.status(201).json(createMatch);
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 

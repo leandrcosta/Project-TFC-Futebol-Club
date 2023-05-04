@@ -12,17 +12,9 @@ const { expect } = chai;
 
 describe("GET/teams", () => {
   describe('Quando a requisição é feita com sucesso', () => {
-    it('Retorna um array de objetos com todos os times cadastrados e statusCode(200)', async () => {
-      const times = [
-        {
-          "id": 1,
-          "teamName": "Avaí/Kindermann"
-        },
-        {
-          "id": 2,
-          "teamName": "Bahia"
-        }
-      ]
+    it('Retorna um array de objetos com todos os times cadastrados e statusCode(200)', async (
+      
+    ) => {
       sinon.stub(Team, 'findAll').resolves(mockTeams as Team[]);
 
       const response = await chai.request(app).get('/teams');
